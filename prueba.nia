@@ -1,2 +1,2 @@
 hola = metodo(9)
-print
+print(hola)
