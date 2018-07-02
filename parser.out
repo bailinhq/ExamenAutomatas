@@ -1,0 +1,169 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    DECREASE
+    DIFFERENT
+    DIVISION
+    DOUBLE
+    ELSE
+    EQUALS
+    FALSE
+    FOR
+    FUNCTION
+    GREATER
+    GREATEREQUAL
+    IF
+    INCREASE
+    LEFTBRACKET
+    LEFTKEY
+    LESSER
+    LESSEREQUAL
+    MULTIPLICATION
+    NEWLINE
+    OR
+    PRINT
+    PRIVATE
+    PUBLIC
+    READ
+    RETURN
+    RIGHTBRACKET
+    RIGHTKEY
+    SEMICOLON
+    STRING
+    SUBSTRACTION
+    SUM
+    TRUE
+    VARDECLARATION
+    VOID
+    WHILE
+
+Grammar
+
+Rule 0     S' -> grammar
+Rule 1     grammar -> grammar2 INT
+Rule 2     grammar -> grammar2 error
+Rule 3     grammar2 -> NAME ASSIGNATION
+Rule 4     instruction -> metodo
+Rule 5     metodo -> number_assignations ASSIGNATION METODO LEFTPAR INT RIGHTPAR
+Rule 6     metodo -> NAME ASSIGNATION METODO LEFTPAR INT error
+Rule 7     number_assignations -> NAME
+Rule 8     number_assignations -> NAME COMMA NAME
+Rule 9     number_assignations -> NAME COMMA NAME COMMA NAME
+Rule 10    number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA
+Rule 11    number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME
+Rule 12    number_assignations -> NAME error NAME COMMA NAME COMMA NAME COMMA NAME
+
+Terminals, with rules where they appear
+
+AND                  : 
+ASSIGNATION          : 3 5 6
+COMMA                : 8 9 9 10 10 10 10 11 11 11 11 12 12 12
+DECREASE             : 
+DIFFERENT            : 
+DIVISION             : 
+DOUBLE               : 
+ELSE                 : 
+EQUALS               : 
+FALSE                : 
+FOR                  : 
+FUNCTION             : 
+GREATER              : 
+GREATEREQUAL         : 
+IF                   : 
+INCREASE             : 
+INT                  : 1 5 6
+LEFTBRACKET          : 
+LEFTKEY              : 
+LEFTPAR              : 5 6
+LESSER               : 
+LESSEREQUAL          : 
+METODO               : 5 6
+MULTIPLICATION       : 
+NAME                 : 3 6 7 8 8 9 9 9 10 10 10 10 11 11 11 11 11 12 12 12 12 12
+NEWLINE              : 
+OR                   : 
+PRINT                : 
+PRIVATE              : 
+PUBLIC               : 
+READ                 : 
+RETURN               : 
+RIGHTBRACKET         : 
+RIGHTKEY             : 
+RIGHTPAR             : 5
+SEMICOLON            : 
+STRING               : 
+SUBSTRACTION         : 
+SUM                  : 
+TRUE                 : 
+VARDECLARATION       : 
+VOID                 : 
+WHILE                : 
+error                : 2 6 12
+
+Nonterminals, with rules where they appear
+
+grammar              : 0
+grammar2             : 1 2
+instruction          : 
+metodo               : 4
+number_assignations  : 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . grammar
+    (1) grammar -> . grammar2 INT
+    (2) grammar -> . grammar2 error
+    (3) grammar2 -> . NAME ASSIGNATION
+
+    NAME            shift and go to state 3
+
+    grammar                        shift and go to state 1
+    grammar2                       shift and go to state 2
+
+state 1
+
+    (0) S' -> grammar .
+
+
+
+state 2
+
+    (1) grammar -> grammar2 . INT
+    (2) grammar -> grammar2 . error
+
+    INT             shift and go to state 4
+    error           shift and go to state 5
+
+
+state 3
+
+    (3) grammar2 -> NAME . ASSIGNATION
+
+    ASSIGNATION     shift and go to state 6
+
+
+state 4
+
+    (1) grammar -> grammar2 INT .
+
+    $end            reduce using rule 1 (grammar -> grammar2 INT .)
+
+
+state 5
+
+    (2) grammar -> grammar2 error .
+
+    $end            reduce using rule 2 (grammar -> grammar2 error .)
+
+
+state 6
+
+    (3) grammar2 -> NAME ASSIGNATION .
+
+    INT             reduce using rule 3 (grammar2 -> NAME ASSIGNATION .)
+    error           reduce using rule 3 (grammar2 -> NAME ASSIGNATION .)
+
