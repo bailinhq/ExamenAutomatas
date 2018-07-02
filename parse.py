@@ -10,19 +10,42 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-def p_INSTRUCTION(p):
-    'instruction : metodo'
 
+def p_START(p):
+    'start : metodo NEWLINE start'
+
+def p_START2(p):
+    'start : metodo NEWLINE'
+
+def p_START3(p):
+    'start : print NEWLINE start'
+
+def p_START4(p):
+    'start : print NEWLINE'
+
+######### METODO EXAMEN
 def p_METODO(p):
     'metodo : number_assignations ASSIGNATION METODO LEFTPAR INT RIGHTPAR'
-#
-# def p_METODO2(p):
-#     'metodo : NAME ASSIGNATION METODO LEFTPAR INT RIGHTPAR'
 
 def p_METODO_error(p):
-    'metodo : NAME ASSIGNATION METODO LEFTPAR INT error'
-    print("Found ", p[6].value , " Expected )")
+    'metodo : number_assignations ASSIGNATION METODO LEFTPAR INT error'
+    print("Found ", p[6].value, " Expected )")
 
+def p_METODO_error2(p):
+    'metodo : number_assignations ASSIGNATION METODO LEFTPAR error'
+    print("Found ", p[5].value, " Expected int")
+
+def p_METODO_error3(p):
+    'metodo : number_assignations ASSIGNATION METODO error'
+    print("Found ", p[4].value, " Expected (")
+
+def p_METODO_error4(p):
+    'metodo : number_assignations ASSIGNATION error'
+    print("Found ", p[3].value, " Expected metodo")
+
+def p_METODO_error5(p):
+    'metodo : number_assignations error'
+    print("Found ", p[2].value, " Expected =")
 
 def p_NUMBER_ASSIGNATIONS1(p):
     'number_assignations : NAME'
@@ -39,9 +62,22 @@ def p_NUMBER_ASSIGNATIONS4(p):
 def p_NUMBER_ASSIGNATIONS5(p):
     'number_assignations : NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME'
 
-def p_NUMBER_ASSIGNATIONS5_error(p):
-    'number_assignations : NAME error NAME COMMA NAME COMMA NAME COMMA NAME'
-#
+
+###### INSTRUCTIONS
+def p_PRINT(p):
+    'print : PRINT LEFTPAR NAME RIGHTPAR'
+
+def p_PRINT_error(p):
+    'print : PRINT LEFTPAR NAME error'
+    print("Found ", p[4].value, ". Expected )")
+
+def p_PRINT_error2(p):
+    'print : PRINT LEFTPAR error'
+    print("Found ", p[3].value, ". Expected variable")
+
+def p_PRINT_error3(p):
+    'print : PRINT error'
+    print("Found ", p[2].value, ". Expected (")
 # def p_error(p):
 #     if p:
 #         print(bcolors.FAIL+"Error:" +bcolors.ENDC ,bcolors.HEADER + p.type+ bcolors.ENDC, bcolors.BOLD + "", p.value,"" + bcolors.ENDC, bcolors.WARNING + "Sucedió en la línea:" + bcolors.ENDC, bcolors.UNDERLINE + "" ,p.lineno,"" + bcolors.ENDC)

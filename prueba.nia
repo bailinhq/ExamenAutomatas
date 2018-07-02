@@ -1,1 +1,2 @@
-hola = n
+hola = metodo(9)
+print

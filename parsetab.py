@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ASSIGNATION COMMA DECREASE DIFFERENT DIVISION DOUBLE ELSE EQUALS FALSE FOR FUNCTION GREATER GREATEREQUAL IF INCREASE INT LEFTBRACKET LEFTKEY LEFTPAR LESSER LESSEREQUAL METODO MULTIPLICATION NAME NEWLINE OR PRINT PRIVATE PUBLIC READ RETURN RIGHTBRACKET RIGHTKEY RIGHTPAR SEMICOLON STRING SUBSTRACTION SUM TRUE VARDECLARATION VOID WHILEgrammar : grammar2 INTgrammar : grammar2 errorgrammar2 : NAME ASSIGNATIONinstruction : metodometodo : number_assignations ASSIGNATION METODO LEFTPAR INT RIGHTPARmetodo : NAME ASSIGNATION METODO LEFTPAR INT errornumber_assignations : NAMEnumber_assignations : NAME COMMA NAMEnumber_assignations : NAME COMMA NAME COMMA NAMEnumber_assignations : NAME COMMA NAME COMMA NAME COMMA NAME COMMAnumber_assignations : NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAMEnumber_assignations : NAME error NAME COMMA NAME COMMA NAME COMMA NAME'
+_lr_signature = 'AND ASSIGNATION COMMA DECREASE DIFFERENT DIVISION DOUBLE ELSE EQUALS FALSE FOR FUNCTION GREATER GREATEREQUAL IF INCREASE INT LEFTBRACKET LEFTKEY LEFTPAR LESSER LESSEREQUAL METODO MULTIPLICATION NAME NEWLINE OR PRINT PRIVATE PUBLIC READ RETURN RIGHTBRACKET RIGHTKEY RIGHTPAR SEMICOLON STRING SUBSTRACTION SUM TRUE VARDECLARATION VOID WHILEstart : metodo NEWLINE startstart : metodo NEWLINEstart : print NEWLINE startstart : print NEWLINEmetodo : number_assignations ASSIGNATION METODO LEFTPAR INT RIGHTPARmetodo : number_assignations ASSIGNATION METODO LEFTPAR INT errormetodo : number_assignations ASSIGNATION METODO LEFTPAR errormetodo : number_assignations ASSIGNATION METODO errormetodo : number_assignations ASSIGNATION errormetodo : number_assignations errornumber_assignations : NAMEnumber_assignations : NAME COMMA NAMEnumber_assignations : NAME COMMA NAME COMMA NAMEnumber_assignations : NAME COMMA NAME COMMA NAME COMMA NAME COMMAnumber_assignations : NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAMEprint : PRINT LEFTPAR NAME RIGHTPARprint : PRINT LEFTPAR NAME errorprint : PRINT LEFTPAR errorprint : PRINT error'
     
-_lr_action_items = {'NAME':([0,],[3,]),'$end':([1,4,5,],[0,-1,-2,]),'INT':([2,6,],[4,-3,]),'error':([2,6,],[5,-3,]),'ASSIGNATION':([3,],[6,]),}
+_lr_action_items = {'PRINT':([0,7,8,],[5,5,5,]),'NAME':([0,7,8,11,13,25,31,33,],[6,6,6,18,20,28,32,34,]),'$end':([1,7,8,14,15,],[0,-2,-4,-1,-3,]),'NEWLINE':([2,3,10,12,17,19,22,23,24,27,29,30,],[7,8,-10,-19,-9,-18,-8,-16,-17,-7,-5,-6,]),'ASSIGNATION':([4,6,20,28,33,34,],[9,-11,-12,-13,-14,-15,]),'error':([4,5,6,9,11,16,18,20,21,26,28,33,34,],[10,12,-11,17,19,22,24,-12,27,30,-13,-14,-15,]),'LEFTPAR':([5,16,],[11,21,]),'COMMA':([6,20,28,32,],[13,25,31,33,]),'METODO':([9,],[16,]),'RIGHTPAR':([18,26,],[23,29,]),'INT':([21,],[26,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'grammar':([0,],[1,]),'grammar2':([0,],[2,]),}
+_lr_goto_items = {'start':([0,7,8,],[1,14,15,]),'metodo':([0,7,8,],[2,2,2,]),'print':([0,7,8,],[3,3,3,]),'number_assignations':([0,7,8,],[4,4,4,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,17 +26,24 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> grammar","S'",1,None,None,None),
-  ('grammar -> grammar2 INT','grammar',2,'p_grammar1','parse.py',14),
-  ('grammar -> grammar2 error','grammar',2,'p_grammar1_error','parse.py',17),
-  ('grammar2 -> NAME ASSIGNATION','grammar2',2,'p_grammar2','parse.py',21),
-  ('instruction -> metodo','instruction',1,'p_INSTRUCTION','parse.py',24),
-  ('metodo -> number_assignations ASSIGNATION METODO LEFTPAR INT RIGHTPAR','metodo',6,'p_METODO','parse.py',27),
-  ('metodo -> NAME ASSIGNATION METODO LEFTPAR INT error','metodo',6,'p_METODO_error','parse.py',33),
-  ('number_assignations -> NAME','number_assignations',1,'p_NUMBER_ASSIGNATIONS1','parse.py',38),
-  ('number_assignations -> NAME COMMA NAME','number_assignations',3,'p_NUMBER_ASSIGNATIONS2','parse.py',41),
-  ('number_assignations -> NAME COMMA NAME COMMA NAME','number_assignations',5,'p_NUMBER_ASSIGNATIONS3','parse.py',44),
-  ('number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA','number_assignations',8,'p_NUMBER_ASSIGNATIONS4','parse.py',47),
-  ('number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME','number_assignations',9,'p_NUMBER_ASSIGNATIONS5','parse.py',50),
-  ('number_assignations -> NAME error NAME COMMA NAME COMMA NAME COMMA NAME','number_assignations',9,'p_NUMBER_ASSIGNATIONS5_error','parse.py',53),
+  ("S' -> start","S'",1,None,None,None),
+  ('start -> metodo NEWLINE start','start',3,'p_START','parse.py',15),
+  ('start -> metodo NEWLINE','start',2,'p_START2','parse.py',18),
+  ('start -> print NEWLINE start','start',3,'p_START3','parse.py',21),
+  ('start -> print NEWLINE','start',2,'p_START4','parse.py',24),
+  ('metodo -> number_assignations ASSIGNATION METODO LEFTPAR INT RIGHTPAR','metodo',6,'p_METODO','parse.py',28),
+  ('metodo -> number_assignations ASSIGNATION METODO LEFTPAR INT error','metodo',6,'p_METODO_error','parse.py',31),
+  ('metodo -> number_assignations ASSIGNATION METODO LEFTPAR error','metodo',5,'p_METODO_error2','parse.py',35),
+  ('metodo -> number_assignations ASSIGNATION METODO error','metodo',4,'p_METODO_error3','parse.py',39),
+  ('metodo -> number_assignations ASSIGNATION error','metodo',3,'p_METODO_error4','parse.py',43),
+  ('metodo -> number_assignations error','metodo',2,'p_METODO_error5','parse.py',47),
+  ('number_assignations -> NAME','number_assignations',1,'p_NUMBER_ASSIGNATIONS1','parse.py',51),
+  ('number_assignations -> NAME COMMA NAME','number_assignations',3,'p_NUMBER_ASSIGNATIONS2','parse.py',54),
+  ('number_assignations -> NAME COMMA NAME COMMA NAME','number_assignations',5,'p_NUMBER_ASSIGNATIONS3','parse.py',57),
+  ('number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA','number_assignations',8,'p_NUMBER_ASSIGNATIONS4','parse.py',60),
+  ('number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME','number_assignations',9,'p_NUMBER_ASSIGNATIONS5','parse.py',63),
+  ('print -> PRINT LEFTPAR NAME RIGHTPAR','print',4,'p_PRINT','parse.py',68),
+  ('print -> PRINT LEFTPAR NAME error','print',4,'p_PRINT_error','parse.py',71),
+  ('print -> PRINT LEFTPAR error','print',3,'p_PRINT_error2','parse.py',75),
+  ('print -> PRINT error','print',2,'p_PRINT_error3','parse.py',79),
 ]
