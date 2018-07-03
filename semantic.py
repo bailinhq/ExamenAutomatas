@@ -33,5 +33,3 @@ def lookup(parameter):
 
 def getList():
     return list
-
-semanticAnalysis()

@@ -1,2 +1,2 @@
-hola = metodo(1)
-print(hola)
+a = metodo(1)
+print(a)
