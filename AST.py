@@ -12,4 +12,4 @@ class InstructionList:
         self.instructions = []
 
     def addInstructions(self, instruction):
-        self.instructions.append(instruction)
+        self.instructions.insert(0, instruction)

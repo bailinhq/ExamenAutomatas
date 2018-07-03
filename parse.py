@@ -80,7 +80,7 @@ def p_NUMBER_ASSIGNATIONS5(p):
 ###### INSTRUCTIONS
 def p_PRINT(p):
     'print : PRINT LEFTPAR NAME RIGHTPAR'
-    p[0] = Print[3]
+    p[0] = Print(p[3])
 
 def p_PRINT_error(p):
     'print : PRINT LEFTPAR NAME error'
@@ -102,6 +102,7 @@ def p_PRINT_error3(p):
 
 def parserAnalysis():
     name = input("Escriba el nombre del archivo con el código fuente ")
+    parser = yacc.yacc()
     file = open(name, 'r')
     line = file.read()
     while True:
