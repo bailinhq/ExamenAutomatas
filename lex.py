@@ -1,5 +1,4 @@
 # coding=utf-8
-
 import ply.lex as lex
 reserved = {
     'public' : 'PUBLIC',
@@ -109,6 +108,7 @@ t_LEFTKEY = r'\{'
 t_RIGHTKEY = r'\}'
 t_ignore = r' '
 
+correcto = True
 def t_error(t):
     print("Lexical error in line " ,t.lexer.lineno, ": ", str(t.value).split("\n",1)[0])
     t.lexer.skip(1)
@@ -116,8 +116,8 @@ def t_error(t):
 
 lexer = lex.lex()
 
-def lexerAnalysis():
-    name = input("Escriba el nombre del archivo con el código fuente ")
+def lexerAnalysis(nombre):
+    name = nombre
     file = open(name, 'r')
     line = file.read()
     lexer.input(line)
@@ -125,3 +125,4 @@ def lexerAnalysis():
         tok = lexer.token()
         if not tok:
             break
+    return correcto

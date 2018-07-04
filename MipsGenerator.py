@@ -1,15 +1,17 @@
 from semantic import *
 
 def generateCode():
-    file = open('code.asm', 'w')
-    semanticAnalysis()
+    correcto = semanticAnalysis()
     ast = getAST()
-    generate(ast, file)
-    file.close()
+    if correcto:
+        file = open('code.asm', 'w')
+        generate(ast, file)
+        file.close()
 
 def generate(ast, file):
     file.write(".data \n")
     file.write('strInput: .asciiz "Inserte un valor" \n')
+    file.write('NEWLINE: .asciiz "\\n" \n')
     for instruction in ast.instructions:
         if type(instruction) is Metodo:
             for parameter in instruction.parameters:
@@ -27,6 +29,8 @@ def generate(ast, file):
 
         if type(instruction) is Print:
             file.write('li $v0, 1\nlw $a0, ' + instruction.parameter + '\nsyscall\n')
+            file.write('li $v0, 4\nla $a0, NEWLINE\nsyscall\n')
+
 
     file.write('li $v0, 10 \nsyscall')
 generateCode()
