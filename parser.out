@@ -53,7 +53,7 @@ Rule 10    metodo -> number_assignations error
 Rule 11    number_assignations -> NAME
 Rule 12    number_assignations -> NAME COMMA NAME
 Rule 13    number_assignations -> NAME COMMA NAME COMMA NAME
-Rule 14    number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA
+Rule 14    number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME
 Rule 15    number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME
 Rule 16    print -> PRINT LEFTPAR NAME RIGHTPAR
 Rule 17    print -> PRINT LEFTPAR NAME error
@@ -64,7 +64,7 @@ Terminals, with rules where they appear
 
 AND                  : 
 ASSIGNATION          : 5 6 7 8 9
-COMMA                : 12 13 13 14 14 14 14 15 15 15 15
+COMMA                : 12 13 13 14 14 14 15 15 15 15
 DECREASE             : 
 DIFFERENT            : 
 DIVISION             : 
@@ -136,7 +136,7 @@ state 0
     (11) number_assignations -> . NAME
     (12) number_assignations -> . NAME COMMA NAME
     (13) number_assignations -> . NAME COMMA NAME COMMA NAME
-    (14) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME COMMA
+    (14) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME
     (15) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME
 
     PRINT           shift and go to state 5
@@ -198,7 +198,7 @@ state 6
     (11) number_assignations -> NAME .
     (12) number_assignations -> NAME . COMMA NAME
     (13) number_assignations -> NAME . COMMA NAME COMMA NAME
-    (14) number_assignations -> NAME . COMMA NAME COMMA NAME COMMA NAME COMMA
+    (14) number_assignations -> NAME . COMMA NAME COMMA NAME COMMA NAME
     (15) number_assignations -> NAME . COMMA NAME COMMA NAME COMMA NAME COMMA NAME
 
     ASSIGNATION     reduce using rule 11 (number_assignations -> NAME .)
@@ -227,7 +227,7 @@ state 7
     (11) number_assignations -> . NAME
     (12) number_assignations -> . NAME COMMA NAME
     (13) number_assignations -> . NAME COMMA NAME COMMA NAME
-    (14) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME COMMA
+    (14) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME
     (15) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME
 
     $end            reduce using rule 2 (start -> metodo NEWLINE .)
@@ -260,7 +260,7 @@ state 8
     (11) number_assignations -> . NAME
     (12) number_assignations -> . NAME COMMA NAME
     (13) number_assignations -> . NAME COMMA NAME COMMA NAME
-    (14) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME COMMA
+    (14) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME
     (15) number_assignations -> . NAME COMMA NAME COMMA NAME COMMA NAME COMMA NAME
 
     $end            reduce using rule 4 (start -> print NEWLINE .)
@@ -312,7 +312,7 @@ state 13
 
     (12) number_assignations -> NAME COMMA . NAME
     (13) number_assignations -> NAME COMMA . NAME COMMA NAME
-    (14) number_assignations -> NAME COMMA . NAME COMMA NAME COMMA NAME COMMA
+    (14) number_assignations -> NAME COMMA . NAME COMMA NAME COMMA NAME
     (15) number_assignations -> NAME COMMA . NAME COMMA NAME COMMA NAME COMMA NAME
 
     NAME            shift and go to state 20
@@ -370,7 +370,7 @@ state 20
 
     (12) number_assignations -> NAME COMMA NAME .
     (13) number_assignations -> NAME COMMA NAME . COMMA NAME
-    (14) number_assignations -> NAME COMMA NAME . COMMA NAME COMMA NAME COMMA
+    (14) number_assignations -> NAME COMMA NAME . COMMA NAME COMMA NAME
     (15) number_assignations -> NAME COMMA NAME . COMMA NAME COMMA NAME COMMA NAME
 
     ASSIGNATION     reduce using rule 12 (number_assignations -> NAME COMMA NAME .)
@@ -412,7 +412,7 @@ state 24
 state 25
 
     (13) number_assignations -> NAME COMMA NAME COMMA . NAME
-    (14) number_assignations -> NAME COMMA NAME COMMA . NAME COMMA NAME COMMA
+    (14) number_assignations -> NAME COMMA NAME COMMA . NAME COMMA NAME
     (15) number_assignations -> NAME COMMA NAME COMMA . NAME COMMA NAME COMMA NAME
 
     NAME            shift and go to state 28
@@ -437,7 +437,7 @@ state 27
 state 28
 
     (13) number_assignations -> NAME COMMA NAME COMMA NAME .
-    (14) number_assignations -> NAME COMMA NAME COMMA NAME . COMMA NAME COMMA
+    (14) number_assignations -> NAME COMMA NAME COMMA NAME . COMMA NAME
     (15) number_assignations -> NAME COMMA NAME COMMA NAME . COMMA NAME COMMA NAME
 
     ASSIGNATION     reduce using rule 13 (number_assignations -> NAME COMMA NAME COMMA NAME .)
@@ -461,7 +461,7 @@ state 30
 
 state 31
 
-    (14) number_assignations -> NAME COMMA NAME COMMA NAME COMMA . NAME COMMA
+    (14) number_assignations -> NAME COMMA NAME COMMA NAME COMMA . NAME
     (15) number_assignations -> NAME COMMA NAME COMMA NAME COMMA . NAME COMMA NAME
 
     NAME            shift and go to state 32
@@ -469,19 +469,18 @@ state 31
 
 state 32
 
-    (14) number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME . COMMA
+    (14) number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME .
     (15) number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME . COMMA NAME
 
+    ASSIGNATION     reduce using rule 14 (number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME .)
+    error           reduce using rule 14 (number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME .)
     COMMA           shift and go to state 33
 
 
 state 33
 
-    (14) number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA .
     (15) number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA . NAME
 
-    ASSIGNATION     reduce using rule 14 (number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA .)
-    error           reduce using rule 14 (number_assignations -> NAME COMMA NAME COMMA NAME COMMA NAME COMMA .)
     NAME            shift and go to state 34
 
 

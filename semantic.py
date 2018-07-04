@@ -28,7 +28,7 @@ def analyze(instructions):
                 if not len(instruction.parameters) == instruction.size:
                     print("Tamano de asignaciones es diferente al numero de variables")
                 if instruction.size > 5 or instruction.size < 1:
-                    print("Tamano de asignaciones es no esta entre 1 y 5")
+                    print("Tamano de asignaciones no esta entre 1 y 5")
     return correcto
 
 def lookup(parameter):

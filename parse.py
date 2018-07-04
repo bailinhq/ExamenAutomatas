@@ -74,7 +74,7 @@ def p_NUMBER_ASSIGNATIONS3(p):
     p[0] = [p[1], p[3], p[5]]
 
 def p_NUMBER_ASSIGNATIONS4(p):
-    'number_assignations : NAME COMMA NAME COMMA NAME COMMA NAME COMMA'
+    'number_assignations : NAME COMMA NAME COMMA NAME COMMA NAME'
     p[0] = [p[1], p[3], p[5], p[7]]
 
 def p_NUMBER_ASSIGNATIONS5(p):
