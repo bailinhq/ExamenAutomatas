@@ -1,5 +1,7 @@
-var1, var2, var3, var4 = metodo(5)
+var1, var2, var3, var4, var5 = metodo(5)
 print(var1)
 print(var2)
 print(var3)
 print(var4)
+var = metodo(1)
+print(var)

@@ -12,7 +12,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 ast = InstructionList()
-correcto = True
+correct = True
 def p_START(p):
     'start : metodo NEWLINE start'
     ast.addInstructions(p[1])
@@ -39,27 +39,32 @@ def p_METODO(p):
 def p_METODO_error(p):
     'metodo : number_assignations ASSIGNATION METODO LEFTPAR INT error'
     print("Found ", p[6].value, " Expected )")
-    correcto = False
+    global correct
+    correct = False
 
 def p_METODO_error2(p):
     'metodo : number_assignations ASSIGNATION METODO LEFTPAR error'
     print("Found ", p[5].value, " Expected int")
-    correcto = False
+    global correct
+    correct = False
 
 def p_METODO_error3(p):
     'metodo : number_assignations ASSIGNATION METODO error'
     print("Found ", p[4].value, " Expected (")
-    correcto = False
+    global correct
+    correct = False
 
 def p_METODO_error4(p):
     'metodo : number_assignations ASSIGNATION error'
     print("Found ", p[3].value, " Expected metodo")
-    correcto = False
+    global correct
+    correct = False
 
 def p_METODO_error5(p):
     'metodo : number_assignations error'
     print("Found ", p[2].value, " Expected =")
-    correcto = False
+    global correct
+    correct = False
 
 def p_NUMBER_ASSIGNATIONS1(p):
     'number_assignations : NAME'
@@ -90,17 +95,20 @@ def p_PRINT(p):
 def p_PRINT_error(p):
     'print : PRINT LEFTPAR NAME error'
     print("Found ", p[4].value, ". Expected )")
-    correcto = False
+    global correct
+    correct = False
 
 def p_PRINT_error2(p):
     'print : PRINT LEFTPAR error'
     print("Found ", p[3].value, ". Expected variable")
-    correcto = False
+    global correct
+    correct = False
 
 def p_PRINT_error3(p):
     'print : PRINT error'
     print("Found ", p[2].value, ". Expected (")
-    correcto = False
+    global correct
+    correct = False
 
 # def p_error(p):
 #     if p:
@@ -110,15 +118,16 @@ def p_PRINT_error3(p):
 
 def parserAnalysis():
     name = input("Escriba el nombre del archivo con el código fuente ")
-    correct = lexerAnalysis(name)
-    if correct:
+    lexerCorrect = lexerAnalysis(name)
+    if lexerCorrect:
         parser = yacc.yacc()
         file = open(name, 'r')
         line = file.read()
         while True:
             parser.parse(line)
             break
-    return correcto
+    global correct
+    return correct
 
 def getAST():
     return ast

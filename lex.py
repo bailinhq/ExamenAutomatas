@@ -1,5 +1,7 @@
 # coding=utf-8
 import ply.lex as lex
+
+correcto = True
 reserved = {
     'public' : 'PUBLIC',
     'private': 'PRIVATE',
@@ -108,10 +110,12 @@ t_LEFTKEY = r'\{'
 t_RIGHTKEY = r'\}'
 t_ignore = r' '
 
-correcto = True
 def t_error(t):
     print("Lexical error in line " ,t.lexer.lineno, ": ", str(t.value).split("\n",1)[0])
+    global correcto
+    correcto = False
     t.lexer.skip(1)
+
 
 
 lexer = lex.lex()
@@ -125,4 +129,6 @@ def lexerAnalysis(nombre):
         tok = lexer.token()
         if not tok:
             break
-    return correcto
+    global correcto
+    correct = correcto
+    return correct
